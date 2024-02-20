@@ -25,14 +25,19 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
  2️⃣ **Identificación del ganador**:
   - Proporciona una manera clara y visible de determinar quién ha ganado la partida.    
 
- 2️⃣ **Indicación de quien es el ganador**:
-  - Define la longitud de la contraseña según la necesidad.
-  - Especifica si la contraseña debe contener letras mayúsculas, minúsculas, números y/o símbolos para una personalización precisa.    
+ 3️⃣ **Reset del juego**:
+  - El juego se resetea al hacer click 
+
+ 4️⃣ **Lanzar confetti cuando gane la partida**:
+  - Una vez que se termine la partida, se lanzará confeti
+
+ 5️⃣ **Persistir la partida en localStorage**:
+  - Se guarda el estado de la partida en el localStorage
     
 ## 🌱 Características
 
 - **Interfaz:** Presenta un diseño sencillo y minimalista para una experiencia de usuario sin complicaciones.
-- **Implementación de Hooks:** Utiliza tanto useState como useEffect de manera extensiva en todas las etapas del juego, brindando una práctica exhaustiva de estos conceptos fundamentales de React.
+- **Implementación de Hooks:** Utiliza useState de manera extensiva en todas las etapas del juego, brindando una práctica exhaustiva de estos conceptos fundamentales de React.
 
 ## 🛠️ Tecnologías Utilizadas
 
