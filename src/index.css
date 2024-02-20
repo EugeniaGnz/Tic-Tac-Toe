@@ -134,7 +134,7 @@ body {
 }
 
 /* FOOTER */
-footer {
+.attribution {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -147,14 +147,14 @@ footer {
   border-top: 1px solid red;
 }
 
-footer small {
+.attribution small {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: bold;
   font-size: 13px;
   opacity: 0.7;
 }
 
-footer small>a {
+.attribution small>a {
   color: #eee;
   font-size: 14px;
 }
