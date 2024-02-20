@@ -25,24 +25,24 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
  2️⃣ **Identificación del ganador**:
   - Proporciona una manera clara y visible de determinar quién ha ganado la partida.    
 
-![Vista previa de la identificación del ganador](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/video/feature2.gif)
+![Vista previa de la identificación del ganador](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/videos/feature2.gif)
 
 
  3️⃣ **Reset del juego**:
   - El juego se resetea al hacer click en el botón de Resetear
   - Una vez habiendo ganado o empatado, aparecerá una modal con un botón de Iniciar un juego nuevo
 
-![Vista previa del reset del juego](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/video/feature3.gif)
+![Vista previa del reset del juego](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/videos/feature3.gif)
 
  4️⃣ **Lanzar confetti cuando gane la partida**:
   - Una vez que se termine la partida con una victoria, se lanzará confetti de celebración
 
-![Vista previa del confetti](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/video/feature4.gif)
+![Vista previa del confetti](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/videos/feature4.gif)
 
  5️⃣ **Persistir la partida en localStorage**:
   - Se guarda el estado de la partida en el localStorage
 
-![Vista previa de la persistencia de la partida en localStorage](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/video/feature5.gif)
+![Vista previa de la persistencia de la partida en localStorage](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/videos/feature5.gif)
     
 ## 🌱 Características
 
