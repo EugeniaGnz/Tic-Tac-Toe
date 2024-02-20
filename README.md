@@ -69,8 +69,8 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 >     
 > Para desplegar en GitHub Pages:
 >   - [Deploying React apps to GitHub Pages](https://blog.logrocket.com/deploying-react-apps-github-pages/)
->   - [Repositorio que explica cómo desplegar](https://github.com/nickpazfernande/video-example)
->   - [Video que explica cómo desplegar](https://www.youtube.com/watch?v=82XNPIiHvOQ)
+>   - [Vite Documentation: Deploying a Static Site in GitHub Pages](https://vitejs.dev/guide/static-deploy.html#github-pages)
+>   - [Video: How to deploy a Vite / React application to GitHub pages](https://www.youtube.com/watch?v=tg-Xgx-lqXM)
 >     
 > A la hora de desarrollar el proyecto, te pueden venir bien los siguientes recursos:
 > - [Curso de React desde cero - MiduDev](https://www.youtube.com/watch?v=qkzcjwnueLA&list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29&index=2)
@@ -97,6 +97,17 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 
 > [!NOTE]
 > El comando que utilicé para instalar canvas-confetti fue ``npm install canvas-confetti -E``
+>
+> 
+> A la hora de hacer el deploy tuve varios problemas debido a que me faltaba una de las instrucciones más importantes, así que este es un resumen de cómo hacerlo para un proyecto de React con Vite desplegado en GitHub Pages:
+> - **1-** Partimos de un proyecto ya subido al repositorio, que ya está acabado y solo queremos desplegarlo.
+> - **2-** Abrimos la terminal en la raíz del proyecto y escribimos el comando ``npm install --save-dev gh-pages`` para instalar gh-pages
+> - **3-** Vamos al archivo ``package.json`` y en la primera línea del json añadimos la línea ``"homepage": "https://NOMBRE_USUARIO.github.io/NOMBRE_REPOSITORIO"`` en el caso de este proyecto sería ``https://criscorreas.github.io/tic-tac-toe/``
+> - **4-** Seguimos en el ``package.json``, esta vez buscamos el apartado **scripts** y añadimos estas dos líneas ``"predeploy": "npm run build", "deploy": "gh-pages -d dist",``
+> - **5-** Ahora vamos al archivo ``vite.config.js`` y en ``export default defineConfig({})`` tenemos que añadir ``base: "/NOMBRE_REPOSITORIO/",`` en el caso de este repo: ``base: "/tic-tac-toe/",`` ➡️ Aquí hay que tener cuidado porque en muchos manuales, blogs y vídeos de despliegue en React, no aparece este paso y sin esto, Vite interpreta la base como "/" y da un error de despliegue ya que no se verá la bien la web
+> - **6-** Hacemos un add, commit y push de los cambios
+> - **7-** Por último hacemos un ``npm run deploy`` lo cual creará la carpeta **dist** y la desplegará en Github Pages
+> Aquí tienes un link para ver los archivos [package.json](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/package.json) y [vite.config.js](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/vite.config.js) y tenerlos como referencia.
 
 ## 🖥 Instrucciones para Ejecutar el Proyecto
 - Clona este repositorio en tu máquina local: ``git clone https://github.com/CrisCorreaS/tic-tac-toe.git``
