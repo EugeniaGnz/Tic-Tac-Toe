@@ -60,8 +60,7 @@ body {
 
 .board .game {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  /* Usamos tres columnas de 1 fracción que se tienen que repetir tres veces */
+  grid-template-columns: repeat(3, 1fr); /* Usamos tres columnas de 1 fracción que se tienen que repetir tres veces */
   gap: 10px;
 }
 
@@ -133,8 +132,28 @@ body {
   font-size: 48px;
 }
 
-a {
+/* FOOTER */
+.attribution {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #222;
+  color: #eee;
+  width: 100%;
+  text-align: center;
   padding: 10px;
-  margin: 20px;
-  color: azure;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid red;
+}
+
+.attribution small {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.attribution small>a {
+  color: #eee;
+  font-size: 14px;
 }
