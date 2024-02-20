@@ -68,6 +68,7 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 >   - [Cómo iniciar un proyecto React con Vite - Carlos Azaustre](https://carlosazaustre.es/react-vite)
 >     
 > Para desplegar en GitHub Pages:
+>   - [Deploying React apps to GitHub Pages](https://blog.logrocket.com/deploying-react-apps-github-pages/)
 >   - [Repositorio que explica cómo desplegar](https://github.com/nickpazfernande/video-example)
 >   - [Video que explica cómo desplegar](https://www.youtube.com/watch?v=82XNPIiHvOQ)
 >     
