@@ -7,7 +7,7 @@
 ![React](https://img.shields.io/badge/React-097FA5?style=flat-square&logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white)
 <br/><br/>
-[![Imagen del juego tic tac toe](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/img/visualizaci%C3%B3n/generador-vista.png)](https://criscorreas.github.io/tic-tac-toe/)
+[![Imagen del juego tic tac toe](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/tic-tac-toe-vista.png)](https://criscorreas.github.io/tic-tac-toe/)
 
 Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de MiduDev](https://www.youtube.com/watch?v=qkzcjwnueLA&list=PLUofhDIg_38q4D0xNWp7FEHOTcZhjWJ29&index=2) y ha sido desarrollado por **[Cristina Correa](https://www.linkedin.com/in/cristina-correa-segade/)**.
 
@@ -16,7 +16,7 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 ### ➡️ **Demo desplegada en GitHub Pages:** **[Haz click aquí](https://criscorreas.github.io/tic-tac-toe/)**
 
 ### Vista del juego tic tac toe
-![Vista previa del juego tic tac toe](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/img/visualizaci%C3%B3n/generador-vista.png)
+![Vista previa del juego tic tac toe](https://github.com/CrisCorreaS/tic-tac-toe/blob/main/src/assets/tic-tac-toe-vista.png)
 
 ### Funcionalidades:
  1️⃣ **Gestión de turnos**:
@@ -29,7 +29,7 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
   - El juego se resetea al hacer click 
 
  4️⃣ **Lanzar confetti cuando gane la partida**:
-  - Una vez que se termine la partida, se lanzará confeti
+  - Una vez que se termine la partida, se lanzará confetti de celebración
 
  5️⃣ **Persistir la partida en localStorage**:
   - Se guarda el estado de la partida en el localStorage
@@ -77,6 +77,10 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 > - React:
 >    - [React Documentation](https://es.react.dev/)
 >    - [Preguntas típicas de React.js](https://www.reactjs.wiki/)
+> - canvas-confetti
+>  - [canvas-confetti npm](https://www.npmjs.com/package/canvas-confetti)
+>  - [canvas-confetti github repo](https://github.com/catdad/canvas-confetti)
+>  - [canvas-confetti snippets](https://www.kirilv.com/canvas-confetti/)
 > - VSCode
 >   - [Automatización tareas con VSCode](https://code.visualstudio.com/docs/editor/tasks)
 
