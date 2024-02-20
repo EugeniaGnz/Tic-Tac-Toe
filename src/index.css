@@ -141,7 +141,7 @@ body {
   color: #eee;
   width: 100%;
   text-align: center;
-  padding: 10px;
+  padding: 1px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
   border-top: 1px solid red;
 }
