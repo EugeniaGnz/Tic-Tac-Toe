@@ -78,9 +78,9 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 >    - [React Documentation](https://es.react.dev/)
 >    - [Preguntas típicas de React.js](https://www.reactjs.wiki/)
 > - canvas-confetti
->  - [canvas-confetti npm](https://www.npmjs.com/package/canvas-confetti)
->  - [canvas-confetti github repo](https://github.com/catdad/canvas-confetti)
->  - [canvas-confetti snippets](https://www.kirilv.com/canvas-confetti/)
+>    - [canvas-confetti npm](https://www.npmjs.com/package/canvas-confetti)
+>    - [canvas-confetti github repo](https://github.com/catdad/canvas-confetti)
+>    - [canvas-confetti snippets](https://www.kirilv.com/canvas-confetti/)
 > - VSCode
 >   - [Automatización tareas con VSCode](https://code.visualstudio.com/docs/editor/tasks)
 
