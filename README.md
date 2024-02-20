@@ -84,6 +84,8 @@ Este juego tic tac toe han sido inspirado por el [Curso de React desde cero de M
 > - VSCode
 >   - [Automatización tareas con VSCode](https://code.visualstudio.com/docs/editor/tasks)
 
+> [!NOTE]
+> El comando que utilicé para instalar canvas-confetti fue ``npm install canvas-confetti -E``
 
 ## 🖥 Instrucciones para Ejecutar el Proyecto
 - Clona este repositorio en tu máquina local: ``git clone https://github.com/CrisCorreaS/tic-tac-toe.git``
