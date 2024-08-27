@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { TURNS } from "./constants.js";
 import { Square } from "./components/Square.jsx";
 import { WinnerModal } from "./components/WinnerModal.jsx";
+import { LoginModal } from "./components/LoginModal.jsx";
 
 const socket = io("http://localhost:3300");
 
@@ -12,6 +13,7 @@ function App() {
   const [turn, setTurn] = useState(TURNS.X);
   const [winner, setWinner] = useState(null);
   const [roomId, setRoomId] = useState(null);
+  const [showLoginModal, setShowLoginModal] = useState(true);
 
   useEffect(() => {
     console.log("Conectado al servidor");
@@ -56,29 +58,46 @@ function App() {
     socket.emit("makeMove", { roomId, index });
   };
 
-  // const resetGame = () => {
-  //   console.log(`reiniciar el juego en la sala ${roomId}`);
-  //   socket.emit("resetGame");
-  // };
+  const resetGame = () => {
+    console.log(`reiniciar el juego en la sala ${roomId}`);
+    socket.emit("resetGame");
+  };
+
+  const handleLogin = () => {
+    setShowLoginModal(false);
+  };
+
+  if (showLoginModal) {
+    return <LoginModal onLogin={handleLogin} />;
+  }
 
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
-      <button onClick={resetGame}>Reset del juego</button>
-      <section className="game">
-        {board.map((square, index) => (
-          <Square key={index} index={index} updateBoard={updateBoard}>
-            {square}
-          </Square>
-        ))}
-      </section>
+      <div className="juego">
+        <section>
+          <p>Lista de espera</p>
+        </section>
 
-      <section className="turn">
-        <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
-        <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
-      </section>
+        <section>
+          <button onClick={resetGame}>Reset del juego</button>
+          <section className="game">
+            {board.map((square, index) => (
+              <Square key={index} index={index} updateBoard={updateBoard}>
+                {square}
+              </Square>
+            ))}
+          </section>
 
-      <WinnerModal resetGame={resetGame} winner={winner} />
+          <section className="turn">
+            <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
+            <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
+          </section>
+        </section>
+        
+
+      </div>
+        <WinnerModal resetGame={resetGame} winner={winner} />
     </main>
   );
 }

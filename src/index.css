@@ -157,3 +157,41 @@ body {
   color: #eee;
   font-size: 14px;
 }
+
+
+
+
+.username{
+  width: 70%;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 0.2;
+  border-style: solid;
+  border-color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.botones{
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+.loginButton{
+  width: 90px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 10px;
+  outline: none;
+  border: 0.2;
+  border-style: solid;
+  border-color: white;
+}
+
+
+
+
+
+.juego{
+  display: flex;
+}
