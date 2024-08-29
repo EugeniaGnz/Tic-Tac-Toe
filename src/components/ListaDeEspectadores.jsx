@@ -7,29 +7,38 @@ export const ListaDeEspectadores = () => {
     const [conteo, setConteo] = useState(0);
 
     useEffect(() => {
-        // Escucha cuando se actualiza la lista de espectadores
+        // Emitir lista de espectadores
         socket.on('actualizarListaDeEspectadores', (nuevaListaDeEspectadores) => {
             setEspectadores(nuevaListaDeEspectadores);
         });
 
-        // Escucha cuando se actualiza el conteo de espectadores
+        // Emitir el conteo de espectadores
         socket.on('actualizarConteoDeEspectadores', (data) => {
             setConteo(data.conteo);
         });
 
-        // Limpia la lista de espectadores y el conteo
+        // Reiniciar listas
         return () => {
             socket.off('actualizarListaDeEspectadores');
             socket.off('actualizarConteoDeEspectadores');
         };
     }, [socket]);
 
+    const moverAListaDeEspera = (jugadorId) => {
+        socket.emit('moverAListaEspera', { jugadorId });
+    };
+
     return (
         <div>
             <h2>Espectadores ({conteo})</h2>
             <ul>
                 {espectadores.map((espectador) => (
-                    <li key={espectador.id}>ID: {espectador.id}</li>
+                    <li key={espectador.id}>
+                        ID: {espectador.id}
+                        <button onClick={() => moverAListaDeEspera(espectador.id)}>
+                            Mover a Lista de Espera
+                        </button>
+                    </li>
                 ))}
             </ul>
         </div>
