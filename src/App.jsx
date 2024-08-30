@@ -6,6 +6,7 @@ import { WinnerModal } from './components/WinnerModal.jsx';
 import { LoginModal } from './components/LoginModal.jsx';
 import { ListaDeEspera } from './components/ListaDeEspera';  // Importa el componente de Lista de Espera
 import { ListaDeEspectadores } from './components/ListaDeEspectadores';  // Importa el componente de Lista de Espectadores
+import { JuegosModal } from './components/JuegosModal.jsx';
 
 function App() {
   const { socket } = useContext(SocketContext);
@@ -14,6 +15,7 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [roomId, setRoomId] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(true);
+  const [showJuegosModal, setShowJuegosModal] = useState(false);
   const [jugadorActual, setJugadorActual] = useState(null);
   const [perdedor, setPerdedor] = useState(null);
 
@@ -108,10 +110,23 @@ const irEspectadores = () => {
   const handleLogin = () => {
     setShowLoginModal(false);
   };
+  const mostrarModal = () => {
+    setShowJuegosModal(true);
+  };
+  const esconderModal = () => {
+    setShowJuegosModal(false);
+  };
+
 
   if (showLoginModal) {
-    return <LoginModal onLogin={handleLogin} />;
+    return <LoginModal onLogin={handleLogin} handleJuegos={mostrarModal} />;
   }
+
+
+  if (showJuegosModal) {
+    return <JuegosModal esconder={esconderModal} />;
+  }
+
 
   return (
     <main className="board">
@@ -124,7 +139,7 @@ const irEspectadores = () => {
           <ListaDeEspectadores /> 
         </section>
         <section>
-          <button onClick={volverAJugar}>Volver a jugar</button>
+          {/* <button onClick={volverAJugar}>Volver a jugar</button> */}
           <section className="game">
             {board.map((square, index) => (
               <Square key={index} index={index} updateBoard={updateBoard}>
