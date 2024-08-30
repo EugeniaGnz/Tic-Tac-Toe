@@ -14,11 +14,17 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [roomId, setRoomId] = useState(null);
   const [showLoginModal, setShowLoginModal] = useState(true);
+  const [jugadorActual, setJugadorActual] = useState(null);
+  const [perdedor, setPerdedor] = useState(null);
 
   useEffect(() => {
     if (!socket) return;
 
     console.log("Conectado al servidor");
+
+    socket.on("IdJugador", ({id}) => {
+      setJugadorActual(id);
+    });
 
     socket.on("gameStart", ({ roomId, turn }) => {
       console.log(`Juego iniciado en la sala ${roomId}, turno: ${turn}`);
@@ -33,7 +39,8 @@ function App() {
       setTurn(turn);
     });
 
-    socket.on("gameEnd", ({ winner }) => {
+    socket.on("gameEnd", ({ winner, id }) => {
+      setPerdedor(id);
       setWinner(winner);
     });
 
@@ -61,6 +68,8 @@ function App() {
   const updateBoard = (index) => {
     if (board[index] || winner) return;
     socket.emit("makeMove", { roomId, index });
+    socket.on("actua")
+    console.log(winner)
   };
 
   const volverAJugar = () => {
@@ -72,6 +81,28 @@ function App() {
     setTurn(TURNS.X); // Resetea el turno
     setWinner(null); // Resetea el ganador
 };
+
+const irSalaEspera = () => {
+  console.log("IrSalaEspera");
+  socket.emit("crearSalas", "player");
+
+  socket.on("actualizarListaDeEspera", (lista) => {
+    console.log(lista);
+  });
+  setRoomId(null); // Resetea la sala actual en el cliente
+  setBoard(Array(9).fill(null)); // Limpia el tablero
+  setTurn(TURNS.X); // Resetea el turno
+  setWinner(null); // Resetea el ganador
+}
+
+const irEspectadores = () => {
+  socket.emit("moverAEspectadores");
+  socket.emit("crearSalas", "spectator")
+  socket.on("actualizarListaDeEspectadores", (lista) => {
+    console.log(lista);
+  });
+  setWinner(null);
+}
 
 
   const handleLogin = () => {
@@ -87,7 +118,7 @@ function App() {
       <h1>Tic Tac Toe</h1>
       <div className="juego">
         <section>
-          <ListaDeEspera />  {/* Agrega el componente de Lista de Espera */}
+          <ListaDeEspera winner={winner}/>  {/* Agrega el componente de Lista de Espera */}
         </section>
         <section>
           <ListaDeEspectadores /> 
@@ -107,7 +138,7 @@ function App() {
           </section>
         </section>
       </div>
-      <WinnerModal resetGame={volverAJugar} winner={winner} />
+      <WinnerModal resetGame={volverAJugar} irSalaEspera={irSalaEspera} irEspecadores={irEspectadores} winner={winner} jugadorActual={jugadorActual} perdedor={perdedor}/>
     </main>
   );
 }

@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SocketContext } from '../context/SocketContext';
 
-export const ListaDeEspera = () => {
+export const ListaDeEspera = ({winner}) => {
     const { socket } = useContext(SocketContext);
     const [listaDeEspera, setListaDeEspera] = useState([]);
+
+    socket.on('actualizarListaDeEspera', (nuevaListaDeEspera) => {
+        setListaDeEspera(nuevaListaDeEspera);
+    });
 
     useEffect(() => {
         // Escuchar el evento para actualizar la lista de espera
         socket.on('actualizarListaDeEspera', (nuevaListaDeEspera) => {
+            console.log(nuevaListaDeEspera);
             setListaDeEspera(nuevaListaDeEspera);
         });
 
@@ -15,7 +20,7 @@ export const ListaDeEspera = () => {
         return () => {
             socket.off('actualizarListaDeEspera');
         };
-    }, [socket]);
+    }, [socket, winner]);
 
     const moverAEspectadores = (jugadorId) => {
         socket.emit('moverAEspectadores', jugadorId);
