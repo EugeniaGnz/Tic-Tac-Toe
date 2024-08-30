@@ -4,8 +4,8 @@ import { TURNS } from './constants.js';
 import { Square } from './components/Square.jsx';
 import { WinnerModal } from './components/WinnerModal.jsx';
 import { LoginModal } from './components/LoginModal.jsx';
-import { ListaDeEspera } from './components/ListaDeEspera';  // Importa el componente de Lista de Espera
-import { ListaDeEspectadores } from './components/ListaDeEspectadores';  // Importa el componente de Lista de Espectadores
+import { ListaDeEspera } from './components/ListaDeEspera'; 
+import { ListaDeEspectadores } from './components/ListaDeEspectadores';  
 import { JuegosModal } from './components/JuegosModal.jsx';
 
 function App() {
@@ -38,6 +38,7 @@ function App() {
 
     socket.on("updateBoard", ({ board, turn }) => {
       setBoard(board);
+      console.log(board);
       setTurn(turn);
     });
 
@@ -53,7 +54,6 @@ function App() {
     });
 
     socket.on("disconnect", () => {
-      // Opcional: Muestra el modal de inicio de sesión si el jugador se desconecta
       setShowLoginModal(true);
     });
 
@@ -67,6 +67,14 @@ function App() {
     };
   }, [socket]);
 
+  const espectar = () => {
+    socket.on("updateBoard", ({ board, turn }) => {
+      setBoard(board);
+      console.log(board);
+      setTurn(turn);
+    });
+  };
+
   const updateBoard = (index) => {
     if (board[index] || winner) return;
     socket.emit("makeMove", { roomId, index });
@@ -75,13 +83,13 @@ function App() {
   };
 
   const volverAJugar = () => {
-    if (!roomId) return; // Asegúrate de que haya una sala activa
+    if (!roomId) return; 
     console.log(`Volver a jugar en la sala ${roomId}`);
-    socket.emit("volverAJugar", { roomId }); // Envía la sala actual al servidor
-    setRoomId(null); // Resetea la sala actual en el cliente
-    setBoard(Array(9).fill(null)); // Limpia el tablero
-    setTurn(TURNS.X); // Resetea el turno
-    setWinner(null); // Resetea el ganador
+    socket.emit("volverAJugar", { roomId });
+    setRoomId(null); 
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X); 
+    setWinner(null); 
 };
 
 const irSalaEspera = () => {
@@ -91,10 +99,10 @@ const irSalaEspera = () => {
   socket.on("actualizarListaDeEspera", (lista) => {
     console.log(lista);
   });
-  setRoomId(null); // Resetea la sala actual en el cliente
-  setBoard(Array(9).fill(null)); // Limpia el tablero
-  setTurn(TURNS.X); // Resetea el turno
-  setWinner(null); // Resetea el ganador
+  setRoomId(null); 
+  setBoard(Array(9).fill(null)); 
+  setTurn(TURNS.X); 
+  setWinner(null); 
 }
 
 const irEspectadores = () => {
@@ -124,7 +132,7 @@ const irEspectadores = () => {
 
 
   if (showJuegosModal) {
-    return <JuegosModal esconder={esconderModal} />;
+    return <JuegosModal esconder={esconderModal} espectar={espectar} />;
   }
 
 
@@ -139,7 +147,6 @@ const irEspectadores = () => {
           <ListaDeEspectadores /> 
         </section>
         <section>
-          {/* <button onClick={volverAJugar}>Volver a jugar</button> */}
           <section className="game">
             {board.map((square, index) => (
               <Square key={index} index={index} updateBoard={updateBoard}>

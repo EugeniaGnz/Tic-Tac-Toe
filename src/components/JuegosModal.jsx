@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../context/SocketContext";
 
-export const JuegosModal = ({ esconder }) => {
+export const JuegosModal = ({ esconder, espectar }) => {
   const { socket } = useContext(SocketContext);
   const [activeGames, setActiveGames] = useState([]);
 
@@ -12,7 +12,6 @@ export const JuegosModal = ({ esconder }) => {
       setActiveGames(activeGames);
     });
 
-    // Limpiar el evento cuando el componente se desmonte
     return () => {
       socket.off("getActiveGames");
     };
@@ -21,6 +20,7 @@ export const JuegosModal = ({ esconder }) => {
   const agregarEspectador = (key) => {
     socket.emit("AgregarEspecador", key);
     esconder();
+    espectar();
   };
 
   return (
@@ -29,8 +29,8 @@ export const JuegosModal = ({ esconder }) => {
         <h3>Juegos disponibles</h3>
         <article>
           {Object.entries(activeGames).map(([key, game], index) => (
-            <button onClick={() => agregarEspectador(key)} key={key}> {/* Cambiado a función de flecha */}
-              Sala: {index + 1} - Turno: {game.turn}
+            <button onClick={() => agregarEspectador(key)} key={key}> 
+              Sala: {index + 1}
             </button>
           ))}
         </article>

@@ -14,7 +14,6 @@ export function WinnerModal({ winner, resetGame, irSalaEspera, irEspecadores, ju
               </header>
               <footer>
                 <div>
-                    {/* <button onClick={irEspecadores}>Espectar</button> */}
                     <button onClick={irSalaEspera}>Seguir jugando</button>
                 </div>
 
