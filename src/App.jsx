@@ -43,23 +43,34 @@ function App() {
       setWinner(null);
     });
 
+    socket.on("disconnect", () => {
+      // Opcional: Muestra el modal de inicio de sesión si el jugador se desconecta
+      setShowLoginModal(true);
+    });
+
     return () => {
       console.log("Desconectando del servidor");
       socket.off("gameStart");
       socket.off("updateBoard");
       socket.off("gameEnd");
       socket.off("gameReset");
+      socket.off("disconnect"); // Limpia el evento de desconexión al desmontar
     };
-  }, [socket, roomId]);
+  }, [socket]);
 
   const updateBoard = (index) => {
     if (board[index] || winner) return;
     socket.emit("makeMove", { roomId, index });
   };
 
-  const resetGame = () => {
-    console.log(`reiniciar el juego en la sala ${roomId}`);
-    socket.emit("resetGame");
+  const leaveGame = () => {
+    console.log(`Dejar el juego en la sala ${roomId}`);
+    socket.emit("leaveGame");
+    setRoomId(null); // Resetea la sala actual en el cliente
+    setBoard(Array(9).fill(null)); // Limpia el tablero
+    setTurn(TURNS.X); // Resetea el turno
+    setWinner(null); // Resetea el ganador
+    setShowLoginModal(true); // Muestra el modal de inicio de sesión
   };
 
   const handleLogin = () => {
@@ -81,7 +92,7 @@ function App() {
           <ListaDeEspectadores /> 
         </section>
         <section>
-          <button onClick={resetGame}>Reset del juego</button>
+          <button onClick={leaveGame}>Dejar el juego</button>
           <section className="game">
             {board.map((square, index) => (
               <Square key={index} index={index} updateBoard={updateBoard}>
@@ -95,7 +106,7 @@ function App() {
           </section>
         </section>
       </div>
-      <WinnerModal resetGame={resetGame} winner={winner} />
+      <WinnerModal resetGame={leaveGame} winner={winner} />
       <ListaDeEspectadores />  {/* Agrega el componente de Lista de Espectadores */}
     </main>
   );
