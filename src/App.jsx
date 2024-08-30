@@ -63,15 +63,16 @@ function App() {
     socket.emit("makeMove", { roomId, index });
   };
 
-  const leaveGame = () => {
-    console.log(`Dejar el juego en la sala ${roomId}`);
-    socket.emit("leaveGame");
+  const volverAJugar = () => {
+    if (!roomId) return; // Asegúrate de que haya una sala activa
+    console.log(`Volver a jugar en la sala ${roomId}`);
+    socket.emit("volverAJugar", { roomId }); // Envía la sala actual al servidor
     setRoomId(null); // Resetea la sala actual en el cliente
     setBoard(Array(9).fill(null)); // Limpia el tablero
     setTurn(TURNS.X); // Resetea el turno
     setWinner(null); // Resetea el ganador
-    setShowLoginModal(true); // Muestra el modal de inicio de sesión
-  };
+};
+
 
   const handleLogin = () => {
     setShowLoginModal(false);
@@ -92,7 +93,7 @@ function App() {
           <ListaDeEspectadores /> 
         </section>
         <section>
-          <button onClick={leaveGame}>Dejar el juego</button>
+          <button onClick={volverAJugar}>Volver a jugar</button>
           <section className="game">
             {board.map((square, index) => (
               <Square key={index} index={index} updateBoard={updateBoard}>
@@ -106,8 +107,7 @@ function App() {
           </section>
         </section>
       </div>
-      <WinnerModal resetGame={leaveGame} winner={winner} />
-      <ListaDeEspectadores />  {/* Agrega el componente de Lista de Espectadores */}
+      <WinnerModal resetGame={volverAJugar} winner={winner} />
     </main>
   );
 }
