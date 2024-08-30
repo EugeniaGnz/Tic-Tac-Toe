@@ -1,40 +1,33 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { SocketContext } from './context/SocketContext';
+import React, { useEffect, useState, useContext } from 'react';
+import { SocketContext } from '../context/SocketContext';
 
 export const ListaDeEspectadores = () => {
     const { socket } = useContext(SocketContext);
-    const [espectadores, setEspectadores] = useState([]);
-    const [conteo, setConteo] = useState(0);
+    const [listaDeEspectadores, setListaDeEspectadores] = useState([]);
 
     useEffect(() => {
-        // Emitir lista de espectadores
+        // Escuchar el evento para actualizar la lista de espectadores
         socket.on('actualizarListaDeEspectadores', (nuevaListaDeEspectadores) => {
-            setEspectadores(nuevaListaDeEspectadores);
+            setListaDeEspectadores(nuevaListaDeEspectadores);
         });
 
-        // Emitir el conteo de espectadores
-        socket.on('actualizarConteoDeEspectadores', (data) => {
-            setConteo(data.conteo);
-        });
-
-        // Reiniciar listas
+        // Limpieza de listeners al desmontar el componente
         return () => {
             socket.off('actualizarListaDeEspectadores');
-            socket.off('actualizarConteoDeEspectadores');
         };
     }, [socket]);
 
-    const moverAListaDeEspera = (jugadorId) => {
-        socket.emit('moverAListaEspera', { jugadorId });
+    const moverAListaDeEspera = (espectadorId) => {
+        socket.emit('moverAListaEspera', espectadorId);
     };
 
     return (
         <div>
-            <h2>Espectadores ({conteo})</h2>
+            <h2>Lista de Espectadores</h2>
             <ul>
-                {espectadores.map((espectador) => (
+                {listaDeEspectadores.map((espectador) => (
                     <li key={espectador.id}>
-                        ID: {espectador.id}
+                     {espectador.username}
                         <button onClick={() => moverAListaDeEspera(espectador.id)}>
                             Mover a Lista de Espera
                         </button>
@@ -44,4 +37,3 @@ export const ListaDeEspectadores = () => {
         </div>
     );
 };
-

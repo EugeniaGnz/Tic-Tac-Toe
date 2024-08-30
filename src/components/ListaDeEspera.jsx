@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { SocketContext } from '../context/SocketContext';
 
-export const ListaDeEspectadores = () => {
+export const ListaDeEspera = () => {
     const { socket } = useContext(SocketContext);
     const [listaDeEspera, setListaDeEspera] = useState([]);
 
@@ -18,7 +18,7 @@ export const ListaDeEspectadores = () => {
     }, [socket]);
 
     const moverAEspectadores = (jugadorId) => {
-        socket.emit('moverAEspectadores', { jugadorId });
+        socket.emit('moverAEspectadores', jugadorId);
     };
 
     return (
@@ -27,7 +27,7 @@ export const ListaDeEspectadores = () => {
             <ul>
                 {listaDeEspera.map((jugador) => (
                     <li key={jugador.id}>
-                        ID: {jugador.id}
+                      {jugador.username}
                         <button onClick={() => moverAEspectadores(jugador.id)}>
                             Mover a Espectadores
                         </button>
